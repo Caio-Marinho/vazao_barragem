@@ -1,6 +1,6 @@
-#vazao_barragem
+# vazao_barragem
 desafio para criar uma simulação de controle de vazão de uma barragem
-#Desafio 17 – Controlando a barragem
+# Desafio 17 – Controlando a barragem
 Uma determinada barragem recebe por minuto entre 300 a 800 (aleatório) litros de água oriundas das chuvas;</br>
 Quando essa barragem chega aos 100000 litros ela abre suas comportas para eliminar entre 500 a 1000 litros de água por minuto;</br>
 Caso essa barragem chegue os 120000 litros de água um sistema de emergência é acionado para eliminar outros 300 litros de água por minuto;</br>

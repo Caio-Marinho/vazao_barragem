@@ -12,7 +12,8 @@ while True:
             if barragem >= 120000:
                 vazao = random.randint(500, 1000)
                 barragem -= (vazao + 300)
-                print(f'Sistema emergencial acionado : Vazão de {barragem} litros\nBarragem secando...')
+                print(f'Sistema emergencial acionado: vazão de {vazao} + 300 litros. '
+                      f'A barragem tem agora {barragem} litros.')
                 sleep(1)
             else:
                 vazao = random.randint(500, 1000)

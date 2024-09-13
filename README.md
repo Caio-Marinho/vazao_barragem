@@ -8,6 +8,3 @@ As comportas ficam abertas até que o nível de água chegue a 50000 litros.
 Apresentar um relatório a cada 30 minutos do nível de água na barragem;
 Dica 1 - Quando as comportas são abertas, as aguas da chuva continuam chegando na barragem;
 Dica 2 - Quando o sistema de emergência é acionado este se somam as comportas no esvaziamento da água.
-![image](https://github.com/user-attachments/assets/a71725c0-453d-41cc-8e8e-ed8e0f7b3e08)
-
-

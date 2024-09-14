@@ -26,12 +26,22 @@ def sistema_emergencial(barragem: int) -> int:
     return barragem
 
 
+def gerar_relatorio(barragem: int, tempo: int) -> None:
+    """Gera um relatório a cada 30 minutos com o nível atual da barragem."""
+    print(f"\n--- Relatório após {tempo // 60} minutos ---")
+    print(f"Nível atual da barragem: {barragem} litros.\n")
+
+
 # Simulação da barragem
 barragem = 0
+tempo = 0
+intervalo_relatorio = 30 * 60  # 30 minutos em segundos
+
 while True:
     # A cada minuto, a barragem recebe água
     barragem = enchendo_barragem(barragem)
     sleep(1)
+    tempo += 1
 
     # Se a barragem estiver com 100.000 litros ou mais, as comportas são abertas
     if barragem >= 100000:
@@ -46,6 +56,15 @@ while True:
             barragem = abrir_comportas(barragem)
 
             sleep(1)
+            tempo += 1
+
+            if tempo % intervalo_relatorio == 0:  # Relatório a cada 30 minutos
+                gerar_relatorio(barragem, tempo)
+
+    # Relatório a cada 30 minutos
+    if tempo % intervalo_relatorio == 0:
+        gerar_relatorio(barragem, tempo)
+
     # Se a barragem estiver abaixo de 50.000 litros, ela começa a encher novamente
     if barragem < 50000:
         print("Barragem abaixo dos 50.000 litros...\nPreparando para encher.")

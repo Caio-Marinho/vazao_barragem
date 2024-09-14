@@ -1,28 +1,51 @@
 import random
 from time import sleep
-barragem = 0
-while True:
+
+
+def enchendo_barragem(barragem: int) -> int:
+    """Adiciona entre 300 a 800 litros de água oriundas da chuva na barragem."""
     agua = random.randint(300, 800)
     barragem += agua
-    print(f"Está enchendo {agua} Litros a barragem tem agora {barragem} Litros.")
+    print(f"Está enchendo {agua} litros. A barragem tem agora {barragem} litros.")
+    return barragem
+
+
+def abrir_comportas(barragem: int) -> int:
+    """Elimina entre 500 a 1000 litros de água por minuto ao abrir as comportas."""
+    vazao = random.randint(500, 1000)
+    barragem -= vazao
+    print(f"Comportas abertas: eliminando {vazao} litros. A barragem tem agora {barragem} litros.")
+    return barragem
+
+
+def sistema_emergencial(barragem: int) -> int:
+    """Aciona o sistema emergencial, eliminando 300 litros extras além das comportas."""
+    barragem -= 300
+    print(f'Sistema emergencial acionado: eliminando 300 litros extras. '
+          f'A barragem tem agora {barragem} litros.')
+    return barragem
+
+
+# Simulação da barragem
+barragem = 0
+while True:
+    # A cada minuto, a barragem recebe água
+    barragem = enchendo_barragem(barragem)
     sleep(1)
-    while barragem >= 50000:
-        if barragem >= 100000:
-            print('Barragem cheia, abrindo comportas')
-            if barragem >= 120000:
-                vazao = random.randint(500, 1000)
-                barragem -= (vazao + 300)
-                print(f'Sistema emergencial acionado: vazão de {vazao} + 300 litros. '
-                      f'A barragem tem agora {barragem} litros.')
-                sleep(1)
-            else:
-                vazao = random.randint(500, 1000)
-                barragem -= vazao
-                print(f"Está secando...\n{vazao} Litros a barragem tem agora {barragem} Litros.")
-                sleep(1)
-        agua = random.randint(300, 800)
-        barragem += agua
-        print(f"Está enchendo {agua} Litros a barragem tem agora {barragem} Litros.")
-        sleep(1)
+
+    # Se a barragem estiver com 100.000 litros ou mais, as comportas são abertas
+    if barragem >= 100000:
+        print('Barragem cheia, abrindo comportas.')
+        while barragem >= 50000:  # As comportas permanecem abertas até a barragem baixar para 50.000 litros
+            barragem = enchendo_barragem(barragem)  # Continua recebendo água da chuva enquanto esvazia
+
+            if barragem >= 120000:  # Aciona o sistema emergencial se passar de 120.000 litros
+                barragem = sistema_emergencial(barragem)
+
+            # Comportas eliminam água
+            barragem = abrir_comportas(barragem)
+
+            sleep(1)
+    # Se a barragem estiver abaixo de 50.000 litros, ela começa a encher novamente
     if barragem < 50000:
-        print("Barragem a baixo dos 50 mil litros...\nPreparando para encher")
+        print("Barragem abaixo dos 50.000 litros...\nPreparando para encher.")
